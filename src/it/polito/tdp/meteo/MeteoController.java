@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.meteo.bean.Citta;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -37,7 +38,16 @@ public class MeteoController {
 
 	@FXML
 	void doCalcolaSequenza(ActionEvent event) {
-
+		txtResult.clear();
+		
+		if(boxMese.getValue()== null) {
+			txtResult.setText("Scegliere mese");
+			return;
+		}
+		
+		List<Citta> best = model.trovaSequenza(boxMese.getValue());
+		txtResult.appendText("Sequenza ottima per il mese "+boxMese.getValue()+"\n");
+		txtResult.appendText(best+"\n");
 	}
 
 	@FXML
